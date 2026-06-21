@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" fill="none">
+  <rect width="400" height="280" fill="#F3F4F6"/>
+  <!-- Rueda trasera -->
+  <circle cx="108" cy="190" r="54" stroke="#D1D5DB" stroke-width="14"/>
+  <circle cx="108" cy="190" r="16" fill="#D1D5DB"/>
+  <!-- Rueda delantera -->
+  <circle cx="292" cy="190" r="54" stroke="#D1D5DB" stroke-width="14"/>
+  <circle cx="292" cy="190" r="16" fill="#D1D5DB"/>
+  <!-- Basculante -->
+  <path d="M108 190 L160 118" stroke="#9CA3AF" stroke-width="11" stroke-linecap="round"/>
+  <!-- Chasis principal -->
+  <path d="M160 118 L210 108 L260 98 L292 148" stroke="#9CA3AF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Asiento -->
+  <path d="M158 116 L190 94 L235 96 L212 110" stroke="#9CA3AF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="#E5E7EB"/>
+  <!-- Motor -->
+  <rect x="155" y="128" width="72" height="58" rx="8" fill="#E5E7EB"/>
+  <!-- Horquilla -->
+  <path d="M260 98 L292 148" stroke="#9CA3AF" stroke-width="9" stroke-linecap="round"/>
+  <!-- Manubrio -->
+  <path d="M260 98 L283 82" stroke="#9CA3AF" stroke-width="7" stroke-linecap="round"/>
+  <path d="M260 98 L276 112" stroke="#9CA3AF" stroke-width="7" stroke-linecap="round"/>
+</svg>
