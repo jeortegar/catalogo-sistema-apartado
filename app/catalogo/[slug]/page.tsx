@@ -6,6 +6,7 @@ import { MotoGallery } from '@/components/motos/moto-gallery'
 import { MotoSpecs } from '@/components/motos/moto-specs'
 import { ApartarCta } from '@/components/motos/apartar-cta'
 import { WhatsAppFab } from '@/components/catalogo/whatsapp-fab'
+import { brand } from '@/lib/config/brand'
 
 export const revalidate = 60
 
@@ -40,23 +41,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     precio,
   ].filter(Boolean)
 
-  const description = `${moto.nombre}${parts.length ? ` — ${parts.join(', ')}` : ''}. Disponible en Tachos Biker.`
-  const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tachosbiker.com'
-  const url = `${BASE_URL}/catalogo/${slug}`
+  const description = `${moto.nombre}${parts.length ? ` — ${parts.join(', ')}` : ''}. Disponible en ${brand.nombre}.`
+  const url = `${brand.sitioUrl}/catalogo/${slug}`
 
   const ogImages = moto.galeria.length
     ? [{ url: moto.galeria[0].url, alt: moto.galeria[0].alt ?? moto.nombre }]
     : []
 
   return {
-    title: `${moto.nombre} | Tachos Biker`,
+    title: `${moto.nombre} | ${brand.nombre}`,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${moto.nombre} | Tachos Biker`,
+      title: `${moto.nombre} | ${brand.nombre}`,
       description,
       url,
-      siteName: 'Tachos Biker',
+      siteName: brand.nombre,
       locale: 'es_MX',
       type: 'website',
       images: ogImages,

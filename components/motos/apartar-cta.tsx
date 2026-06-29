@@ -39,7 +39,7 @@ export function ApartarCta({ estado, slug, monto }: ApartarCtaProps) {
     <Button
       asChild
       size="lg"
-      className="w-full rounded-2xl text-base font-bold h-14"
+      className="w-full rounded-2xl text-base font-bold h-14 text-white"
     >
       <Link href={`/apartar/${slug}`}>
         Apartar esta moto: {montoFormateado}

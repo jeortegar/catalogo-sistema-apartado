@@ -2,23 +2,23 @@ import type { Metadata } from 'next'
 import { getMotosCatalogo } from '@/lib/payload/motos'
 import { CatalogoClientWrapper } from '@/components/catalogo/catalogo-client-wrapper'
 import { WhatsAppFab } from '@/components/catalogo/whatsapp-fab'
+import { brand } from '@/lib/config/brand'
 
 export const revalidate = 60
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tachosbiker.com'
-const CATALOG_URL = `${BASE_URL}/catalogo`
+const CATALOG_URL = `${brand.sitioUrl}/catalogo`
 
 export const metadata: Metadata = {
-  title: 'Catálogo de Motos | Tachos Biker',
+  title: `Catálogo de Motos | ${brand.nombre}`,
   description:
     'Explora nuestro catálogo de motos importadas. Sport, naked, scooter y custom — disponibles para apartar hoy.',
   alternates: { canonical: CATALOG_URL },
   openGraph: {
-    title: 'Catálogo de Motos | Tachos Biker',
+    title: `Catálogo de Motos | ${brand.nombre}`,
     description:
       'Explora nuestro catálogo de motos importadas. Sport, naked, scooter y custom — disponibles para apartar hoy.',
     url: CATALOG_URL,
-    siteName: 'Tachos Biker',
+    siteName: brand.nombre,
     locale: 'es_MX',
     type: 'website',
   },

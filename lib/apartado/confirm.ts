@@ -2,7 +2,7 @@ import { revalidatePath } from 'next/cache'
 import { getApartadoById, updateApartadoEstado, updateMotoEstado } from '@/lib/payload/apartados'
 import { getConektaOrder } from '@/lib/conekta/client'
 
-export async function confirmarApartado(apartadoId: string): Promise<{ ok: boolean; alreadyDone: boolean }> {
+export async function confirmarApartado(apartadoId: string, fallbackOrderId?: string): Promise<{ ok: boolean; alreadyDone: boolean }> {
   const apartado = await getApartadoById(apartadoId)
   if (!apartado) throw new Error(`Apartado ${apartadoId} no encontrado`)
 
@@ -11,12 +11,13 @@ export async function confirmarApartado(apartadoId: string): Promise<{ ok: boole
     return { ok: true, alreadyDone: true }
   }
 
-  if (!apartado.referenciaConekta) {
+  const conektaOrderId = apartado.referenciaConekta ?? fallbackOrderId
+  if (!conektaOrderId) {
     throw new Error('Apartado sin referencia de Conekta — pago aún no iniciado')
   }
 
   // Verify payment status with Conekta
-  const order = await getConektaOrder(apartado.referenciaConekta)
+  const order = await getConektaOrder(conektaOrderId)
 
   if (order.payment_status !== 'paid') {
     if (order.payment_status === 'expired' || order.payment_status === 'declined') {

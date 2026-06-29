@@ -109,7 +109,7 @@ export function ApartarForm({ moto, monto }: ApartarFormProps) {
       <Button
         type="submit"
         size="lg"
-        className="w-full rounded-2xl text-base font-bold h-14"
+        className="w-full rounded-2xl text-base font-bold h-14 text-white"
         disabled={isPending || isRedirecting}
       >
         {(isPending || isRedirecting) ? (

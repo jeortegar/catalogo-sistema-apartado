@@ -5,6 +5,9 @@ import type { GlobalConfig } from 'payload'
 export const ConfiguracionApartado: GlobalConfig = {
   slug: 'configuracion-apartado',
   label: 'Configuración de Apartado',
+  access: {
+    read: () => true,
+  },
   admin: {
     description: 'Configuración global del sistema de apartado de motos.',
   },

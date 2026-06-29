@@ -1,20 +1,19 @@
 'use client'
 
 import { MessageCircle } from 'lucide-react'
+import { brand } from '@/lib/config/brand'
 
 interface WhatsAppFabProps {
   motoNombre?: string
 }
 
 export function WhatsAppFab({ motoNombre }: WhatsAppFabProps) {
-  const numero = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '').replace(/\D/g, '')
-  if (!numero) return null
-
   const mensaje = motoNombre
-    ? `Hola! Me interesa la moto ${motoNombre} que vi en su catálogo. ¿Sigue disponible?`
-    : 'Hola! Vi el catálogo de Tachos Biker y me interesa una moto.'
+    ? brand.mensajes.motoEspecifica(motoNombre)
+    : brand.mensajes.catalogoGeneral
 
-  const href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
+  const href = brand.whatsappHref(mensaje)
+  if (!href) return null
 
   return (
     <a

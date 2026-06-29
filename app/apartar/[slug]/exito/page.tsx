@@ -4,16 +4,17 @@ import { CheckCircle2, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { confirmarApartado } from '@/lib/apartado/confirm'
 import { getApartadoById } from '@/lib/payload/apartados'
+import { brand } from '@/lib/config/brand'
 
 export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ slug: string }>
-  searchParams: Promise<{ apartado_id?: string }>
+  searchParams: Promise<{ apartado_id?: string; order_id?: string }>
 }
 
 export default async function ApartarExitoPage({ params, searchParams }: Props) {
-  const [{ slug }, { apartado_id }] = await Promise.all([params, searchParams])
+  const [{ slug }, { apartado_id, order_id }] = await Promise.all([params, searchParams])
 
   if (!apartado_id) redirect(`/apartar/${slug}/error`)
 
@@ -24,7 +25,7 @@ export default async function ApartarExitoPage({ params, searchParams }: Props) 
   let montoCobrado = 0
 
   try {
-    const result = await confirmarApartado(apartado_id)
+    const result = await confirmarApartado(apartado_id, order_id)
     confirmed = result.ok
   } catch {
     // confirmarApartado may throw if Conekta is not reachable — read apartado anyway
@@ -90,7 +91,7 @@ export default async function ApartarExitoPage({ params, searchParams }: Props) 
         <div className="flex w-full flex-col gap-3">
           <Button asChild size="lg" className="w-full rounded-2xl font-bold h-13">
             <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola, acabo de apartar una moto en Tachos Biker."
+              href={brand.whatsappHref(brand.mensajes.exitoApartado(motoNombre)) ?? '#'}
               target="_blank"
               rel="noopener noreferrer"
             >

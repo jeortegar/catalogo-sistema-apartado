@@ -59,7 +59,7 @@ export async function createCheckoutOrder(params: CreateCheckoutOrderParams): Pr
       type: 'HostedPayment',
       success_url: successUrl,
       failure_url: failureUrl,
-      allowed_payment_methods: ['card', 'spei'],
+      allowed_payment_methods: ['card', 'bank_transfer'],
       expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 24, // 24 hours
     },
     metadata,

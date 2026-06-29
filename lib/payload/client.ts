@@ -4,8 +4,10 @@ export async function fetchFromCMS<T>(path: string, revalidate = 60): Promise<T>
   if (!CMS_URL) {
     throw new Error('PAYLOAD_CMS_URL environment variable is not set')
   }
+  const apiKey = process.env.PAYLOAD_API_KEY
   const res = await fetch(`${CMS_URL}${path}`, {
     next: { revalidate },
+    headers: apiKey ? { Authorization: `users API-Key ${apiKey}` } : {},
   })
   if (!res.ok) {
     throw new Error(`CMS fetch error ${res.status} ${res.statusText}: ${path}`)

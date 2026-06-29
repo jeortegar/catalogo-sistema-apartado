@@ -10,6 +10,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Motos: CollectionConfig = {
   slug: 'motos',
+  access: {
+    read: () => true,
+  },
   hooks: {
     afterChange: [
       async ({ doc, previousDoc }) => {
