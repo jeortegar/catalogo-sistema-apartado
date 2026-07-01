@@ -31,6 +31,7 @@ interface CreateCheckoutOrderParams {
 interface ConektaOrderResponse {
   id: string
   payment_status: string
+  metadata?: Record<string, string>
   checkout?: {
     id: string
     url: string

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyWebhookSignature } from '@/lib/conekta/webhook'
-import { getApartadoByConektaRef } from '@/lib/payload/apartados'
+import { getConektaOrder } from '@/lib/conekta/client'
 import { confirmarApartado } from '@/lib/apartado/confirm'
 
 // Disable body parsing — we need the raw body for HMAC verification
@@ -45,13 +45,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const apartado = await getApartadoByConektaRef(orderId)
-    if (!apartado) {
-      // Unknown order — not our system, ignore
+    // Fetch the Conekta order to read apartado_id from metadata.
+    // This is resilient even when referenciaConekta was not saved on the Apartado.
+    const order = await getConektaOrder(orderId)
+    const apartadoId = order.metadata?.apartado_id
+    if (!apartadoId) {
+      // Not our order (no metadata.apartado_id) — ignore
       return NextResponse.json({ received: true })
     }
 
-    await confirmarApartado(apartado.id)
+    await confirmarApartado(apartadoId, orderId)
   } catch (err) {
     console.error('[webhook] confirmarApartado error:', err)
     return NextResponse.json({ error: 'Internal error' }, { status: 500 })

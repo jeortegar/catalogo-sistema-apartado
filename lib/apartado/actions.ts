@@ -117,11 +117,19 @@ export async function iniciarApartado(
     return { success: false, error: 'conekta_error', message: 'Error al iniciar el proceso de pago. Intenta de nuevo o contáctanos por WhatsApp.' }
   }
 
-  // Step 6: Update Apartado with Conekta orderId
-  try {
-    await updateApartadoConektaRef(apartadoId, orderId)
-  } catch {
-    // Non-fatal: orderId is stored in Conekta; webhook will still confirm payment
+  // Step 6: Update Apartado with Conekta orderId — retry up to 2 times
+  // Critical for the redirect confirmation flow; webhook acts as final fallback
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      await updateApartadoConektaRef(apartadoId, orderId)
+      break
+    } catch (err) {
+      if (attempt === 3) {
+        console.error(`[iniciarApartado] updateApartadoConektaRef failed after 3 attempts for apartado ${apartadoId}:`, err)
+      } else {
+        await new Promise((r) => setTimeout(r, 400 * attempt))
+      }
+    }
   }
 
   return { success: true, checkoutUrl, apartadoId }
