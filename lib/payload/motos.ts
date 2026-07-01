@@ -3,6 +3,12 @@ import { fetchFromCMS } from './client'
 import { MOCKS_MOTOS } from './mocks'
 
 const USE_MOCKS = process.env.USE_MOCK_DATA === 'true'
+const CMS_URL = process.env.PAYLOAD_CMS_URL ?? ''
+
+function resolveUrl(rawUrl: string | null | undefined): string | null {
+  if (!rawUrl) return null
+  return rawUrl.startsWith('http') ? rawUrl : `${CMS_URL}${rawUrl}`
+}
 
 interface PayloadListResponse<T> {
   docs: T[]
@@ -50,7 +56,9 @@ function mapMoto(raw: PayloadMotoRaw): Moto {
     id: raw.id,
     nombre: raw.nombre,
     slug: raw.slug,
-    galeria: raw.galeria,
+    galeria: (raw.galeria ?? [])
+      .map((img) => ({ ...img, url: resolveUrl(img.url) ?? img.url }))
+      .filter((img) => img.url),
     precio: raw.precio,
     estado: raw.estado,
     especificaciones: mapEspecificaciones(raw.especificaciones),
