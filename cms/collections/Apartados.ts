@@ -10,6 +10,10 @@ export const Apartados: CollectionConfig = {
     description: 'Registros de apartados de motos. El campo "Estado de pago" es gestionado automáticamente por el sistema.',
   },
   access: {
+    // create is open: the Next.js server action calls this without a user session.
+    // read/update/delete require a valid user session OR a user-scoped API key
+    // (PAYLOAD_API_KEY env var). If PATCH returns 403, the Users collection is
+    // missing `useAPIKey: true` in its Payload config — see CLAUDE.md for setup.
     create: () => true,
     read: ({ req }) => Boolean(req.user),
     update: ({ req }) => Boolean(req.user),

@@ -36,6 +36,19 @@ Copy `.env.local.example` to `.env.local`. Required vars:
 | `REVALIDATE_SECRET` | Secret for on-demand ISR revalidation from Payload hooks |
 | `USE_MOCK_DATA` | Set to `true` to run without a live CMS (uses `lib/payload/mocks.ts`) |
 
+### Payload API key setup (required for write operations)
+
+`PAYLOAD_API_KEY` must be a **user-scoped API key** from the live Payload instance, not an arbitrary string. The access control on `Apartados` (and other write-protected collections) uses `({ req }) => Boolean(req.user)`, which only passes when `req.user` is populated — and Payload only populates that for requests authenticated with a valid user API key.
+
+**Setup checklist** (do this once on the live Payload instance on Railway):
+
+1. Verify the `Users` collection in Payload has `useAPIKey: true` in its config. Without it, API key auth is silently ignored and every PATCH/DELETE returns 403.
+2. In Payload admin → Users → find (or create) a service user (e.g. "Sistema").
+3. On that user's document, generate an API key and copy it.
+4. Set `PAYLOAD_API_KEY=<that key>` in Vercel environment variables.
+
+**Symptom when misconfigured**: POST to `/api/apartados` succeeds (because `create: () => true` skips auth), but PATCH to `/api/apartados/:id` returns `403 You are not allowed to perform this action`. This causes `referenciaConekta` to never be saved and the apartado confirmation flow to rely solely on the webhook path.
+
 ## Architecture
 
 ### Data flow
