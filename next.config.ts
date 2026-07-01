@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "*.railway.app" },
+      { protocol: "https", hostname: "cms-catalogo-sistema-apartado.vercel.app" },
       { protocol: "https", hostname: "www.yamaha-motor.com.mx" },
       { protocol: "http", hostname: "localhost", port: "3001" },
     ],
