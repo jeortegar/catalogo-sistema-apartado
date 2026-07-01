@@ -30,7 +30,7 @@ export default async function ApartarExitoPage({ params, searchParams }: Props) 
   } catch {
     // confirmarApartado throws when referenciaConekta is not yet saved.
     // Wait briefly for the Conekta webhook to arrive and set it, then retry once.
-    await new Promise((r) => setTimeout(r, 1500))
+    await new Promise((r) => setTimeout(r, 3000))
     try {
       const result = await confirmarApartado(apartado_id, order_id)
       confirmed = result.ok
