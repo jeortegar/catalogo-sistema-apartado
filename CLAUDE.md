@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**Tachos Biker** — digital motorcycle catalog for a Mexican import dealer. Customers browse inventory, view full motorcycle listings, and contact via WhatsApp or initiate an *apartado* (deposit-based reservation). This is a catalog + apartado system, not a full e-commerce cart.
+**Grupo Velmot** — digital motorcycle catalog for a Mexican import dealer. Customers browse inventory, view full motorcycle listings, and contact via WhatsApp or initiate an *apartado* (deposit-based reservation). This is a catalog + apartado system, not a full e-commerce cart.
 
 Stack: Next.js 16.2.6 (App Router), React 19, TypeScript 5, Tailwind CSS 4, shadcn/ui, Payload CMS (external, PostgreSQL on Railway), Conekta payment gateway.
 

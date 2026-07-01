@@ -6,15 +6,15 @@ brand
 
 ## Users
 
-Compradores mexicanos de motos, 18-40 años, con cultura urbana. Navegan desde el celular, a veces en la calle, otras veces en casa comparando opciones. No son expertos técnicos pero reconocen calidad cuando la ven. Ya saben que quieren una moto; Tachos Biker tiene que convencerlos de que esta es la correcta, y que el proceso de compra será confiable.
+Compradores mexicanos de motos, 18-40 años, con cultura urbana. Navegan desde el celular, a veces en la calle, otras veces en casa comparando opciones. No son expertos técnicos pero reconocen calidad cuando la ven. Ya saben que quieren una moto; Grupo Velmot tiene que convencerlos de que esta es la correcta, y que el proceso de compra será confiable.
 
 ## Product Purpose
 
-Catálogo digital de Tachos Biker, distribuidora de motos de importación en México. El cliente navega el inventario disponible, ve la ficha completa de cada moto y contacta por WhatsApp para apartar. El éxito es: el cliente se enamora de una moto y manda un mensaje antes de cerrar la pestaña.
+Catálogo digital de Grupo Velmot, distribuidora de motos de importación en México. El cliente navega el inventario disponible, ve la ficha completa de cada moto y contacta por WhatsApp para apartar. El éxito es: el cliente se enamora de una moto y manda un mensaje antes de cerrar la pestaña.
 
 ## Brand Personality
 
-Auténtico, callejero, local. La energía del streetwear latinoamericano: una tienda de barrio que se volvió marca. Confianza sin arrogancia. Orgullo sin pretensiones. Tachos Biker no imita a Honda.com ni a una boutique europea; tiene su propia voz.
+Auténtico, callejero, local. La energía del streetwear latinoamericano: una tienda de barrio que se volvió marca. Confianza sin arrogancia. Orgullo sin pretensiones. Grupo Velmot no imita a Honda.com ni a una boutique europea; tiene su propia voz.
 
 ## Anti-references
 

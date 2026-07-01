@@ -1,4 +1,4 @@
-# Brief — Tachos Biker Catálogo Digital
+# Brief — Grupo Velmot Catálogo Digital
 
 **Fecha de brief:** 2026-06-14
 **Estado:** BORRADOR — pendiente de validar supuestos secundarios
@@ -196,7 +196,7 @@ ESTADOS DE UNA MOTO:
 ## 13. Descripción de una línea — criterio de cierre
 
 ```
-Catálogo digital mobile-first para Tachos Biker donde jóvenes mexicanos (15–32 años) 
+Catálogo digital mobile-first para Grupo Velmot donde jóvenes mexicanos (15–32 años) 
 exploran ~10 motos importadas con filtros y comparador, y pueden apartar una moto 
 pagando $1,000 MXN online — sin compra completa, sin carrito, sin envíos.
 ```

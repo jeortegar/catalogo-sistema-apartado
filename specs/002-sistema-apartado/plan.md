@@ -6,7 +6,7 @@
 
 ## Summary
 
-Sistema de apartado de motos para Tachos Biker: el cliente completa un formulario de datos de contacto, acepta el aviso de privacidad (LFPDPPP), y es redirigido a Conekta Hosted Checkout para pagar el monto de apartado configurado globalmente (default $1,000 MXN). Al confirmarse el pago (vía redirect + webhook), el sistema actualiza automáticamente el estado de la moto a "Apartada" en Payload CMS e invalida el caché de Next.js. El admin gestiona estados de moto manualmente y configura el monto desde el panel de Payload. La feature cubre M5, M6 y M7 del alcance comprometido.
+Sistema de apartado de motos para Grupo Velmot: el cliente completa un formulario de datos de contacto, acepta el aviso de privacidad (LFPDPPP), y es redirigido a Conekta Hosted Checkout para pagar el monto de apartado configurado globalmente (default $1,000 MXN). Al confirmarse el pago (vía redirect + webhook), el sistema actualiza automáticamente el estado de la moto a "Apartada" en Payload CMS e invalida el caché de Next.js. El admin gestiona estados de moto manualmente y configura el monto desde el panel de Payload. La feature cubre M5, M6 y M7 del alcance comprometido.
 
 ## Technical Context
 

@@ -27,7 +27,7 @@ export function SiteHeader({ logoUrl, logoAlt }: SiteHeaderProps) {
               />
             ) : (
               <span className="font-heading font-bold text-sm tracking-tight">
-                Tachos Biker
+                Grupo Velmot
               </span>
             )}
           </Link>

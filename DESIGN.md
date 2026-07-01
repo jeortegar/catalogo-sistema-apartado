@@ -1,5 +1,5 @@
 ---
-name: Tachos Biker Catálogo Digital
+name: Grupo Velmot Catálogo Digital
 description: Catálogo de motos de importación — auténtico, callejero, local
 colors:
   primary: "oklch(0.66 0.19 48)"
@@ -101,7 +101,7 @@ components:
     padding: "0 12px"
 ---
 
-# Design System: Tachos Biker Catálogo Digital
+# Design System: Grupo Velmot Catálogo Digital
 
 ## 1. Overview
 
@@ -109,7 +109,7 @@ components:
 
 La energía de un catálogo de colección bien editado: tipografía fuerte en cuadrícula deliberada, cada foto con espacio para respirar. El diseño habla del objeto que vende, no de sí mismo. Oxanium es la voz mecánica y precisa que une el mundo de la moto con la cultura del impreso; DM Sans es el cuerpo legible que no pide atención. El acento ámbar entra una vez y se gana su lugar, nunca decora sin propósito.
 
-El sistema rechaza la estética de las distribuidoras genéricas de autos (fondos blancos infinitos, azul corporativo, filas idénticas), el frío del e-commerce europeo de lujo, la asepsia de los distribuidores japoneses oficiales, y la oscuridad editorial de sitios como Iron & Resin. Nada de eso es Tachos Biker: ninguno de esos sitios trata al comprador de igual a igual.
+El sistema rechaza la estética de las distribuidoras genéricas de autos (fondos blancos infinitos, azul corporativo, filas idénticas), el frío del e-commerce europeo de lujo, la asepsia de los distribuidores japoneses oficiales, y la oscuridad editorial de sitios como Iron & Resin. Nada de eso es Grupo Velmot: ninguno de esos sitios trata al comprador de igual a igual.
 
 La escena física: un comprador en su celular, en el metro o en una silla en casa, comparando motos. El sitio debe sentirse tan sólido y curado como un catálogo de sneakers de colección que alguien tomó de un estante. El color ámbar es la misma energía de las etiquetas de precio escritas con marcador en una tienda que sabe lo que vale.
 
@@ -241,12 +241,12 @@ Todos los componentes responden en ≤150ms con ease-out. Active states son visi
 - **Do** variar el peso visual entre tarjetas mediante el precio y el badge de estado. La cuadrícula tiene ritmo cuando no todos los elementos tienen el mismo peso.
 
 ### Don't:
-- **Don't** usar el azul de shadcn (`oklch(0.5 0.134 242.749)`) como primary. No tiene nada que ver con Tachos Biker y es la señal de identidad más fuerte de "plantilla sin customizar".
+- **Don't** usar el azul de shadcn (`oklch(0.5 0.134 242.749)`) como primary. No tiene nada que ver con Grupo Velmot y es la señal de identidad más fuerte de "plantilla sin customizar".
 - **Don't** hacer que el fondo sea `oklch(1 0 0)` puro. Cemento Blanco tiene chroma 0.005 a hue 85; esa diferencia minúscula separa "distribuidora con criterio" de "app SaaS en blanco".
 - **Don't** imitar las agencias genéricas de autos: fondos blancos infinitos, filas idénticas de vehículos, tipografía corporativa intercambiable con cualquier competitor.
-- **Don't** imitar el e-commerce de lujo europeo: fondo negro total, tipografía serif fría, precios sin contexto. Tachos Biker es accesible, no exclusivista.
-- **Don't** imitar los distribuidores japoneses oficiales (Honda.com, Yamaha MX): demasiado limpio, demasiado técnico, sin voz propia. El manual de marca de un fabricante no es el manual de Tachos Biker.
-- **Don't** usar la estética editorial de sitios como Iron & Resin o Deus Ex Machina: fotografía oscura, cultura custom/vintage muy nicho. Tachos Biker vende motos de uso diario a compradores reales.
+- **Don't** imitar el e-commerce de lujo europeo: fondo negro total, tipografía serif fría, precios sin contexto. Grupo Velmot es accesible, no exclusivista.
+- **Don't** imitar los distribuidores japoneses oficiales (Honda.com, Yamaha MX): demasiado limpio, demasiado técnico, sin voz propia. El manual de marca de un fabricante no es el manual de Grupo Velmot.
+- **Don't** usar la estética editorial de sitios como Iron & Resin o Deus Ex Machina: fotografía oscura, cultura custom/vintage muy nicho. Grupo Velmot vende motos de uso diario a compradores reales.
 - **Don't** usar gradient text (background-clip: text + gradient). Prohibido en todo el sistema.
 - **Don't** usar border-left o border-right como stripe de acento en tarjetas o callouts. Si necesitas señalar énfasis, usa fondo tintado o borde completo.
 - **Don't** aplicar sombras en reposo a las tarjetas. La sombra es un evento de hover, no una propiedad permanente.

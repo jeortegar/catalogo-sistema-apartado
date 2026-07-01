@@ -53,7 +53,7 @@
 - [X] T010 [P] [US1] Create `components/catalogo/catalogo-empty.tsx` — empty state for two scenarios: (A) catalog with no motos at all (message: "Pronto habrá motos disponibles" + WhatsApp inline link using `NEXT_PUBLIC_WHATSAPP_NUMBER`); (B) no filter results (message: "No hay motos con estos filtros" + "Limpiar filtros" reset button). *Note: el WhatsApp FAB (T023) se agrega en Phase 6 y será visible junto a este estado vacío — duplicación intencional aceptada para que el MVP (US1) funcione sin depender de US4.*
 - [X] T011 [US1] Create `components/catalogo/moto-grid.tsx` — receives `motos: Moto[]` and `onReset?: () => void`; renders responsive grid of MotoCards; renders CatalogoEmpty variant (A) when no motos at all; renders CatalogoEmpty variant (B) with `onReset` callback when filters yield empty (depends on T009, T010)
 - [X] T012 [US1] Create `app/catalogo/page.tsx` — Server Component: calls `getMotosCatalogo()`, passes result to MotoGrid; add `export const revalidate = 60` (depends on T007, T011)
-- [X] T013 [US1] Add `generateMetadata` to `app/catalogo/page.tsx` — title: "Catálogo de Motos | Tachos Biker", description SEO en español (depends on T012)
+- [X] T013 [US1] Add `generateMetadata` to `app/catalogo/page.tsx` — title: "Catálogo de Motos | Grupo Velmot", description SEO en español (depends on T012)
 
 **Checkpoint**: `/catalogo` muestra el listado de motos. US1 completamente funcional e independiente.
 
@@ -89,7 +89,7 @@
 - [X] T020 [P] [US3] Create `components/catalogo/whatsapp-fab.tsx` — `'use client'`; renders fixed-position FAB (bottom-right, z-50); `href` = `https://wa.me/${NEXT_PUBLIC_WHATSAPP_NUMBER}?text={encodedMessage}`; accepts optional `motoNombre?: string` prop to personalize the message; uses `target="_blank" rel="noopener noreferrer"` *(moved from US4 to satisfy US3 Acceptance Scenario 4 — H1 fix)*
 - [X] T021 [US3] Create `app/catalogo/[slug]/page.tsx` — Server Component: calls `getMotoBySlug(params.slug)`, calls `notFound()` if null; renders MotoGallery + nombre + precio MXN + MotoSpecs + ApartarCTA + `<WhatsAppFAB motoNombre={moto.nombre} />`; add `export const revalidate = 60` (depends on T007, T017, T018, T019, T020)
 - [X] T022 [US3] Add `generateStaticParams` to `app/catalogo/[slug]/page.tsx` — calls `getMotoSlugs()` and returns `{ slug }[]` (depends on T008, T021)
-- [X] T023 [US3] Add `generateMetadata` to `app/catalogo/[slug]/page.tsx` — title: `"{nombre} | Tachos Biker"`, description with cilindraje + tipo + precio; fallback title if moto not found (depends on T021)
+- [X] T023 [US3] Add `generateMetadata` to `app/catalogo/[slug]/page.tsx` — title: `"{nombre} | Grupo Velmot"`, description with cilindraje + tipo + precio; fallback title if moto not found (depends on T021)
 
 **Checkpoint**: `/catalogo/[slug]` muestra ficha completa incluyendo WhatsApp FAB. Todos los acceptance scenarios de US3 satisfechos.
 
@@ -103,7 +103,7 @@
 
 ### Implementation for User Story 4
 
-- [X] T024 [US4] Add `<WhatsAppFAB />` to `app/catalogo/page.tsx` — generic message "Hola! Vi el catálogo de Tachos Biker y me interesa una moto"; uses WhatsAppFAB component created in T020 (depends on T012, T020)
+- [X] T024 [US4] Add `<WhatsAppFAB />` to `app/catalogo/page.tsx` — generic message "Hola! Vi el catálogo de Grupo Velmot y me interesa una moto"; uses WhatsAppFAB component created in T020 (depends on T012, T020)
 
 **Checkpoint**: Botón WhatsApp flotante visible en catálogo y ficha. Mensaje contextual en la ficha incluye nombre de la moto.
 

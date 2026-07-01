@@ -8,7 +8,7 @@ import { WhatsAppFab } from '@/components/catalogo/whatsapp-fab'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: 'Tachos Biker — Motos de importación en México',
+  title: 'Grupo Velmot — Motos de importación en México',
   description:
     'Catálogo de motos importadas. Sport, naked, scooter y custom. Aparta tu moto en línea hoy mismo.',
 }
@@ -20,7 +20,7 @@ export default async function HomePage() {
     <main>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section
-        aria-label="Portada Tachos Biker"
+        aria-label="Portada Grupo Velmot"
         className="relative flex min-h-[50dvh] -mt-11 sm:-mt-12 items-end overflow-hidden"
       >
         {siteConfig.heroUrl && (

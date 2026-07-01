@@ -6,7 +6,7 @@
 
 ## Summary
 
-Catálogo público de motos para Tachos Biker: listado con filtros, ficha de detalle, y botón flotante de WhatsApp. El frontend (Next.js App Router, Vercel) consume datos de Payload CMS vía REST API usando ISR con revalidación de 60 segundos. El filtrado es cliente-side dado el volumen de ~10 SKUs. La feature cubre M1, M3, M4 y M9 del alcance comprometido.
+Catálogo público de motos para Grupo Velmot: listado con filtros, ficha de detalle, y botón flotante de WhatsApp. El frontend (Next.js App Router, Vercel) consume datos de Payload CMS vía REST API usando ISR con revalidación de 60 segundos. El filtrado es cliente-side dado el volumen de ~10 SKUs. La feature cubre M1, M3, M4 y M9 del alcance comprometido.
 
 ## Technical Context
 

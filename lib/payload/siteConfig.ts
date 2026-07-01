@@ -28,11 +28,11 @@ export interface SiteConfig {
 
 const FALLBACK: SiteConfig = {
   logoUrl: '/assets/logo.png',
-  logoAlt: 'Tachos Biker',
+  logoAlt: 'Grupo Velmot',
   heroUrl: '/assets/hero.png',
   heroWidth: 1920,
   heroHeight: 1080,
-  heroAlt: 'Tachos Biker — motos de importación',
+  heroAlt: 'Grupo Velmot — motos de importación',
   subtituloHero: 'Motos de importación. Apartas en línea.',
 }
 
