@@ -1,4 +1,4 @@
-import type { EstadoMoto, EspecificacionesMoto, ImagenMoto, Moto, TipoMoto } from '@/lib/types/moto'
+import type { EstadoMoto, EspecificacionesMoto, Moto, TipoMoto } from '@/lib/types/moto'
 import { fetchFromCMS } from './client'
 import { MOCKS_MOTOS } from './mocks'
 
@@ -16,11 +16,23 @@ interface PayloadListResponse<T> {
   hasNextPage: boolean
 }
 
+interface PayloadMediaRaw {
+  url: string
+  width?: number
+  height?: number
+  alt?: string | null
+}
+
+interface PayloadGaleriaItem {
+  id?: string
+  imagen: PayloadMediaRaw
+}
+
 interface PayloadMotoRaw {
   id: string
   nombre: string
   slug: string
-  galeria: ImagenMoto[]
+  galeria: PayloadGaleriaItem[]
   precio: number
   estado: EstadoMoto
   especificaciones?: {
@@ -57,8 +69,13 @@ function mapMoto(raw: PayloadMotoRaw): Moto {
     nombre: raw.nombre,
     slug: raw.slug,
     galeria: (raw.galeria ?? [])
-      .map((img) => ({ ...img, url: resolveUrl(img.url) ?? img.url }))
-      .filter((img) => img.url),
+      .filter((item) => item.imagen?.url)
+      .map((item) => ({
+        url: resolveUrl(item.imagen.url) ?? item.imagen.url,
+        alt: item.imagen.alt ?? undefined,
+        width: item.imagen.width,
+        height: item.imagen.height,
+      })),
     precio: raw.precio,
     estado: raw.estado,
     especificaciones: mapEspecificaciones(raw.especificaciones),
