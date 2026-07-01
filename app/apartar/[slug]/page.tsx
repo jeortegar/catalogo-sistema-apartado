@@ -1,14 +1,26 @@
 import { notFound, redirect } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { getMotoBySlug } from '@/lib/payload/motos'
 import { getConfiguracionApartado } from '@/lib/payload/apartados'
 import { ApartarForm } from '@/components/motos/apartar-form'
+import { brand } from '@/lib/config/brand'
 
 export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const moto = await getMotoBySlug(slug).catch(() => null)
+  if (!moto) return {}
+  return {
+    title: `Apartar ${moto.nombre} | ${brand.nombre}`,
+    robots: { index: false, follow: false },
+  }
 }
 
 export default async function ApartarPage({ params }: Props) {

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { XCircle, ArrowLeft, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { brand } from '@/lib/config/brand'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -30,16 +31,18 @@ export default async function ApartarErrorPage({ params }: Props) {
               Intentar de nuevo
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="w-full rounded-2xl h-13">
-            <a
-              href="https://wa.me/521XXXXXXXXXX?text=Hola, quiero apartar una moto pero tuve un problema con el pago."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle className="size-4" />
-              Contactar por WhatsApp
-            </a>
-          </Button>
+          {brand.whatsappHref(brand.mensajes.catalogoGeneral) && (
+            <Button asChild variant="outline" size="lg" className="w-full rounded-2xl h-13">
+              <a
+                href={brand.whatsappHref('Hola, quería apartar una moto pero tuve un problema con el pago. ¿Pueden ayudarme?') ?? '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="size-4" />
+                Contactar por WhatsApp
+              </a>
+            </Button>
+          )}
           <Button asChild variant="ghost" size="sm" className="w-full">
             <Link href="/catalogo">Ver más motos</Link>
           </Button>

@@ -14,13 +14,13 @@ export function ApartarCta({ estado, slug, monto }: ApartarCtaProps) {
 
   if (estado === 'apartada') {
     return (
-      <div className="flex items-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 dark:border-amber-800/40 dark:bg-amber-950/20">
-        <Lock className="size-5 shrink-0 text-amber-600 dark:text-amber-400" />
+      <div className="flex items-center gap-3 rounded-2xl px-5 py-4 border border-[oklch(0.86_0.10_65)] bg-[oklch(0.96_0.04_70)] dark:border-[oklch(0.42_0.14_45/0.40)] dark:bg-[oklch(0.18_0.04_48/0.20)]">
+        <Lock className="size-5 shrink-0 text-[oklch(0.50_0.16_48)] dark:text-[oklch(0.73_0.17_65)]" />
         <div>
-          <p className="font-semibold text-amber-800 dark:text-amber-300 text-sm">
+          <p className="font-semibold text-sm text-[oklch(0.32_0.10_48)] dark:text-[oklch(0.82_0.10_65)]">
             Esta moto ya fue apartada
           </p>
-          <p className="text-amber-700/70 dark:text-amber-400/70 text-xs mt-0.5">
+          <p className="text-xs mt-0.5 text-[oklch(0.44_0.10_48/0.70)] dark:text-[oklch(0.73_0.17_65/0.70)]">
             Contáctanos por WhatsApp para ver otras opciones.
           </p>
         </div>

@@ -52,6 +52,7 @@ export function ApartarForm({ moto, monto }: ApartarFormProps) {
           autoComplete="name"
           required
           minLength={2}
+          maxLength={100}
           placeholder="Tu nombre"
           disabled={isPending || isRedirecting}
         />
@@ -99,8 +100,12 @@ export function ApartarForm({ moto, monto }: ApartarFormProps) {
 
       {/* Error */}
       {errorMessage && (
-        <div className="flex items-start gap-2 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-          <AlertCircle className="size-4 mt-0.5 shrink-0" />
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="flex items-start gap-2 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+        >
+          <AlertCircle className="size-4 mt-0.5 shrink-0" aria-hidden="true" />
           <span>{errorMessage}</span>
         </div>
       )}

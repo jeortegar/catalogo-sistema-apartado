@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect, useCallback, useId } from 'react'
 import { ChevronDown, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { FiltrosMoto } from '@/lib/types/moto'
@@ -31,14 +31,18 @@ interface FilterDropdownProps {
 
 function FilterDropdown({ label, activeLabel, active, children }: FilterDropdownProps) {
   const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [panelAlign, setPanelAlign] = useState<'left' | 'right' | null>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const buttonId = useId()
+  const panelId = useId()
 
   const close = useCallback(() => setOpen(false), [])
 
   useEffect(() => {
     if (!open) return
     function onDown(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) close()
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) close()
     }
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') close()
@@ -51,13 +55,50 @@ function FilterDropdown({ label, activeLabel, active, children }: FilterDropdown
     }
   }, [open, close])
 
+  useLayoutEffect(() => {
+    if (open && panelRef.current) {
+      const rect = panelRef.current.getBoundingClientRect()
+      setPanelAlign(rect.right > window.innerWidth - 8 ? 'right' : 'left')
+    } else {
+      setPanelAlign(null)
+    }
+  }, [open])
+
+  useEffect(() => {
+    if (open && panelAlign !== null && panelRef.current) {
+      const first = panelRef.current.querySelector('[role="option"]') as HTMLElement | null
+      first?.focus()
+    }
+  }, [open, panelAlign])
+
+  function handlePanelKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    const options = Array.from(
+      panelRef.current?.querySelectorAll('[role="option"]') ?? [],
+    ) as HTMLElement[]
+    if (!options.length) return
+    const current = document.activeElement as HTMLElement
+    const idx = options.indexOf(current)
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      options[Math.min(idx + 1, options.length - 1)]?.focus()
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      options[Math.max(idx - 1, 0)]?.focus()
+    }
+  }
+
   return (
-    <div ref={ref} className="relative">
+    <div ref={wrapperRef} className="relative">
       <button
         type="button"
+        id={buttonId}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={open ? panelId : undefined}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          'flex items-center gap-1 py-2 text-sm transition-opacity hover:opacity-60 select-none',
+          'flex items-center gap-1 min-h-[44px] px-1 text-sm transition-opacity hover:opacity-60 select-none',
           active && 'font-medium',
         )}
       >
@@ -71,11 +112,22 @@ function FilterDropdown({ label, activeLabel, active, children }: FilterDropdown
         )}
         <ChevronDown
           className={cn('size-3.5 transition-transform duration-150', open && 'rotate-180')}
+          aria-hidden="true"
         />
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 z-50 mt-1 min-w-[180px] bg-white shadow-[0_4px_24px_rgba(0,0,0,0.10)] border border-border py-1">
+        <div
+          ref={panelRef}
+          id={panelId}
+          role="listbox"
+          aria-labelledby={buttonId}
+          onKeyDown={handlePanelKeyDown}
+          className={cn(
+            'absolute top-full z-50 mt-1 min-w-[180px] bg-background shadow-[0_4px_24px_oklch(0.145_0.004_65/0.10)] border border-border py-1 rounded-md',
+            panelAlign === null ? 'opacity-0 pointer-events-none left-0' : panelAlign === 'right' ? 'right-0' : 'left-0',
+          )}
+        >
           {children}
         </div>
       )}
@@ -93,9 +145,11 @@ function DropdownOption({ selected, onClick, children }: DropdownOptionProps) {
   return (
     <button
       type="button"
+      role="option"
+      aria-selected={selected}
       onClick={onClick}
       className={cn(
-        'w-full text-left px-4 py-2 text-sm hover:bg-zinc-50 transition-colors',
+        'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors focus:outline-none focus:bg-muted',
         selected ? 'font-semibold' : 'font-normal',
       )}
     >
@@ -152,6 +206,7 @@ export function CatalogoFilters({
       <div className="flex items-center gap-1.5">
         <input
           type="search"
+          aria-label="Buscar moto"
           placeholder="Buscar moto…"
           value={filtros.busqueda}
           onChange={(e) => set('busqueda', e.target.value)}
@@ -236,9 +291,10 @@ export function CatalogoFilters({
         <button
           type="button"
           onClick={onReset}
+          aria-label="Limpiar todos los filtros"
           className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors ml-auto"
         >
-          <X className="size-3" />
+          <X className="size-3" aria-hidden="true" />
           Limpiar
         </button>
       )}

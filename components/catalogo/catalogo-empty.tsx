@@ -45,7 +45,7 @@ export function CatalogoEmpty({ onReset }: CatalogoEmptyProps) {
           href={`https://wa.me/${whatsappNumber}?text=${mensaje}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-white text-sm font-semibold transition-opacity hover:opacity-90"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-[oklch(0.74_0.20_148)] px-6 py-3 text-white text-sm font-semibold transition-opacity hover:opacity-90"
         >
           <MessageCircle className="size-4" />
           Consultar disponibilidad

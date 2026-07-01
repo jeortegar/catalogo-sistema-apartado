@@ -32,17 +32,17 @@ export function MotoCard({ moto }: { moto: Moto }) {
   return (
     <Link
       href={`/catalogo/${moto.slug}`}
-      className="group flex flex-col rounded-[18px] bg-card overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      className="group flex flex-col rounded-[18px] bg-card overflow-hidden isolate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
     >
       {/* Imagen 4:3 */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-t-[18px] bg-secondary">
         {!imgError && imagenPrincipal ? (
           <Image
             src={imagenPrincipal.url}
             alt={imagenPrincipal.alt ?? moto.nombre}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
-            className="object-contain p-4 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
             onError={() => setImgError(true)}
           />
         ) : (
@@ -66,7 +66,7 @@ export function MotoCard({ moto }: { moto: Moto }) {
       </div>
 
       {/* Info */}
-      <div className="flex flex-col gap-1 p-4">
+      <div className="flex flex-col gap-1 p-4 rounded-b-[18px] bg-card">
         <p className="font-heading text-[0.95rem] font-semibold leading-snug line-clamp-2 text-foreground">
           {moto.nombre}
         </p>

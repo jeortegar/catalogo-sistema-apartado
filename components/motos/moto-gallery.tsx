@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import type { ImagenMoto } from '@/lib/types/moto'
 
@@ -13,6 +13,11 @@ interface MotoGalleryProps {
 export function MotoGallery({ galeria, nombre }: MotoGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [imgErrors, setImgErrors] = useState<Record<number, boolean>>({})
+
+  useEffect(() => {
+    setActiveIndex(0)
+    setImgErrors({})
+  }, [galeria])
 
   const activeImage = galeria[activeIndex]
   const hasError = imgErrors[activeIndex]
